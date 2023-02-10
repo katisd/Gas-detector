@@ -42,6 +42,7 @@ export const useGetLastRecord = () => {
         refetchInterval: 1000,
     })
     return {...query}
+}
 const URL = "http://group2.exceed19.online/"
 
 
@@ -58,7 +59,7 @@ const hour = z.array(z.object({
 
 export const useGetLastDay = () => {
     return useQuery('day', async () => {
-        const data = await Axios.get(`${URL}record/last_day`);
+        const data = await axios.get(`${URL}record/last_day`);
         return day.parse(data.data);
     },
         {
@@ -69,7 +70,7 @@ export const useGetLastDay = () => {
 
 export const useGetLastHour = () => {
     return useQuery('hour', async () => {
-        const data = await Axios.get(`${URL}record/last_hour`);
+        const data = await axios.get(`${URL}record/last_hour`);
         return hour.parse(data.data);
     },
         {
