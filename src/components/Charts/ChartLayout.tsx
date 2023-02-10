@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useGetLastDay , useGetLastHour} from "../common/useGetData";
 import ChartComponents from "./ChartComponents";
 // TODO - replace with real data from API
 const recHour = [
@@ -7,15 +8,14 @@ const recHour = [
   { x: "2020-02-15 23:27:39", y: 59 },
   { x: "2020-02-15 19:37:39", y: 66 },
 ];
-const recDay = [
-  { x: "2020-02-15", y: 65 },
-  { x: "2020-02-17", y: 59 },
-  { x: "2020-02-18", y: 59 },
-  { x: "2020-02-19", y: 66 },
-];
 
 // display chart with toggle button
 const ChartLayout = () => {
+  const {data:recDay} = useGetLastDay();
+  // TODO get data from API
+  // const {data:recHour} = useGetLastHour();
+  // console.log(recDay)
+
   // default display hours log
   const [hoursDisplay, setHoursDisplay] = useState(true);
   return (
@@ -54,7 +54,7 @@ const ChartLayout = () => {
         )}
         {/* line chart days log */}
         {!hoursDisplay && (
-          <ChartComponents chartData={recDay} chartName="day" xAisUnit="hour" />
+          <ChartComponents chartData={recDay} chartName="Volumn" xAisUnit="hour" />
         )}
       </div>
     </div>
