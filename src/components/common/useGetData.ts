@@ -10,11 +10,12 @@ const commandResponseShema = z.object({
 })
 type CommandResponse = z.infer<typeof commandResponseShema>
 // fetch command function
-const fetchCommand= async () => {
-    const res = await axios.get<CommandResponse>(`${url}/record/command`).then((res) => {
+const fetchCommand= () => {
+    return axios.get<CommandResponse>(`${url}/record/command`).then((res) => {
         return commandResponseShema.parse(res.data)
+    }).catch((err) => {
+        console.log(err)
     })
-    return res
 }
 // useQuery on repeat
 export const useGetCommand = () => {
@@ -29,21 +30,23 @@ const lastRecordShema = z.object({
     gas_quantity: z.number(),
     status: z.string(),
 })
-const getLastRecord = async () => {
-    const res = await axios.get(`${url}/record/last`).then((res) => {
+const getLastRecord = () => {
+    return axios.get(`${url}/record/last`).then((res) => {
+        console.log(res.data);
         return lastRecordShema.parse(res.data)
+    }).catch((err) => {
+        console.log(err)
     })
-    return res
+    
 }
 export const useGetLastRecord = () => {
     const query=useQuery({
         queryKey: ["lastRecord"],
-        queryFn: ()=>getLastRecord(),
+        queryFn: getLastRecord,
         refetchInterval: 1000,
     })
     return {...query}
 }
-const URL = "http://group2.exceed19.online/"
 
 
 const day = z.array(z.object({
@@ -59,7 +62,7 @@ const hour = z.array(z.object({
 
 export const useGetLastDay = () => {
     return useQuery('day', async () => {
-        const data = await axios.get(`${URL}record/last_day`);
+        const data = await axios.get(`${url}/record/last_day`);
         return day.parse(data.data);
     },
         {
@@ -70,7 +73,7 @@ export const useGetLastDay = () => {
 
 export const useGetLastHour = () => {
     return useQuery('hour', async () => {
-        const data = await axios.get(`${URL}record/last_hour`);
+        const data = await axios.get(`${url}/record/last_hour`);
         return hour.parse(data.data);
     },
         {
