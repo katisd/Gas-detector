@@ -25,7 +25,7 @@ ChartJS.register(
 );
 
 type ChartProps = {
-  chartData: { x: string; y: number }[];
+  chartData: { x: string; y: number }[] | undefined;
   chartName: string;
   xAisUnit: "day" | "minute" | "hour";
 };
@@ -39,7 +39,7 @@ const ChartComponent: React.FC<ChartProps> = ({
   // map string to date and sort by date ascending
   const data = {
     labels: chartData
-      .map(({ x, y }) => ({ x: new Date(x), y }))
+      ?.map(({ x, y }) => ({ x: new Date(x), y }))
       .sort((a, b) => (a.x > b.x ? 1 : -1)),
     chartName: chartName,
   };
@@ -89,6 +89,10 @@ const ChartComponent: React.FC<ChartProps> = ({
       },
     },
   };
-  return <Line data={Data} options={options} width={400} height={200} />;
+  return chartData ? (
+    <Line data={Data} options={options} width={400} height={200} />
+  ) : (
+    <></>
+  );
 };
 export default ChartComponent;
