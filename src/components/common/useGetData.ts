@@ -2,7 +2,8 @@
 import axios from "axios"
 import {  useQuery } from "react-query"
 import { z } from "zod"
-const url="http://group2.exceed19.online"
+// const url="http://group2.exceed19.online"
+const url="https://ecourse.cpe.ku.ac.th/exceed02/"
 
 // response of ferchCommand schema
 const commandResponseShema = z.object({
