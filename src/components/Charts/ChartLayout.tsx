@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import { useGetLastDay, useGetLastHour } from "../common/useGetData";
 import ChartComponents from "./ChartComponents";
 // TODO - replace with real data from API
-const recHour = [
-  { x: "2020-02-15 18:37:39", y: 65 },
-  { x: "2020-02-15 19:07:39", y: 59 },
-  { x: "2020-02-15 23:27:39", y: 59 },
-  { x: "2020-02-15 19:37:39", y: 66 },
-];
+// const recHour = [
+//   { x: "2020-02-15 18:37:39", y: 65 },
+//   { x: "2020-02-15 19:07:39", y: 59 },
+//   { x: "2020-02-15 23:27:39", y: 59 },
+//   { x: "2020-02-15 19:37:39", y: 66 },
+// ];
 
 // display chart with toggle button
 const ChartLayout = () => {
   const { data: recDay } = useGetLastDay();
   console.log(recDay);
   // TODO get data from API
-  // const {data:recHour} = useGetLastHour();
-  // console.log(recDay)
+  const {data:recHour} = useGetLastHour();
+  console.log(recHour)
 
   // default display hours log
   const [hoursDisplay, setHoursDisplay] = useState(true);
