@@ -27,9 +27,12 @@ const WindowButton = ({
     <>
       {/* TODO add on off display */}
       <button
-        onClick={() =>
-          UpadateCommand({ LocalCommand, windowCommand, setLocalCommand })
-        }
+        onClick={() => {
+          UpadateCommand({ LocalCommand, windowCommand, setLocalCommand });
+          if (LocalCommand != windowCommand) {
+            setLocalCommand(undefined);
+          }
+        }}
         className="btn-primary btn h-full flex-1 space-x-5 p-3"
       >
         <h1 className="text-xl">Smart Window</h1>

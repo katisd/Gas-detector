@@ -52,7 +52,7 @@ const ChartComponent: React.FC<ChartProps> = ({
       .sort((a, b) => (a.x > b.x ? 1 : -1)),
     chartName: chartName,
   };
-  const color = chartData?.map(({ x, y }) => helperColor(y));
+  const color = data.labels?.map(({ x, y }) => helperColor(y));
   const Data = {
     labels: [],
     datasets: [

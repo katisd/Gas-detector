@@ -6,7 +6,6 @@ import { type windowButtonProps } from "../SideContent/WindowButton"
 // static variable
 // const url="http://group2.exceed19.online"
 const url="https://ecourse.cpe.ku.ac.th/exceed02"
-console.log("asasss",url);
 const delayGraph = 5000
 const delayStatus = 1000
 const delayCommand = 1000
@@ -18,7 +17,7 @@ const commandResponseShema = z.object({
 type CommandResponse = z.infer<typeof commandResponseShema>
 // fetch command function
 const fetchCommand= (setLocalCommand: React.Dispatch<React.SetStateAction<boolean | undefined>>) => {
-    setLocalCommand(undefined)
+    
     return axios.get<CommandResponse>(`${url}/record/command`).then((res) => {
         return commandResponseShema.parse(res.data)
     }).catch((err) => {
@@ -41,7 +40,6 @@ const lastRecordShema = z.object({
 })
 const getLastRecord = () => {
     return axios.get(`${url}/record/last`).then((res) => {
-        console.log(res.data);
         return lastRecordShema.parse(res.data)
     }).catch((err) => {
         console.log(err)
