@@ -37,12 +37,12 @@ const ChartComponent: React.FC<ChartProps> = ({
   xAisUnit,
 }) => {
   const helperColor = (gas: number) => {
-    if (gas > 1700) {
-      return "rgb(255, 255, 0,0.2)";
-    } else if (gas > 3000) {
-      return "rgb(255, 0, 0,0.2)";
+    if (gas < 1700) {
+      return "rgb(4, 122, 255,0.45)";
+    } else if (gas < 3000) {
+      return "rgb(255, 255, 0,0.45)";
     } else {
-      return "rgb(4, 122, 255,0.2)";
+      return "rgb(255, 0, 0,0.45)";
     }
   };
   // map string to date time and sort by date ascending
