@@ -16,7 +16,7 @@ const commandResponseShema = z.object({
 })
 type CommandResponse = z.infer<typeof commandResponseShema>
 // fetch command function
-const fetchCommand= (setLocalCommand: React.Dispatch<React.SetStateAction<boolean | undefined>>) => {
+const fetchCommand= () => {
     
     return axios.get<CommandResponse>(`${url}/record/command`).then((res) => {
         return commandResponseShema.parse(res.data)
@@ -25,10 +25,10 @@ const fetchCommand= (setLocalCommand: React.Dispatch<React.SetStateAction<boolea
     })
 }
 // get last command in server
-export const useGetCommand = (setLocalCommand: React.Dispatch<React.SetStateAction<boolean | undefined>>) => {
+export const useGetCommand = () => {
     const query=useQuery({
         queryKey: ["command"],
-        queryFn: ()=>fetchCommand(setLocalCommand),
+        queryFn: ()=>fetchCommand(),
         refetchInterval: delayCommand,
     })
     return {...query}
@@ -58,7 +58,8 @@ export const useGetLastRecord = () => {
 // schema of chart data
 const chartDataSchema = z.array(z.object({
     x: z.string(),
-    y: z.number()
+    y: z.number(),
+    status: z.string(),
 }));
 // get data 24 hour
 export const useGetLastDay = () => {

@@ -9,7 +9,7 @@ const Content: React.FC = () => {
   const [LocalCommand, setLocalCommand] = useState<boolean | undefined>(
     undefined
   );
-  const { data: serverCommandData } = useGetCommand(setLocalCommand);
+  const { data: serverCommandData } = useGetCommand();
   const windowCommand = serverCommandData?.isOpen;
   return (
     <div className="order-1 flex flex-1 flex-col space-y-5 md:order-2">

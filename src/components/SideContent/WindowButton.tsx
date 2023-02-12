@@ -29,6 +29,7 @@ const WindowButton = ({
       <button
         onClick={() => {
           UpadateCommand({ LocalCommand, windowCommand, setLocalCommand });
+          // try sync with server
           if (LocalCommand != windowCommand) {
             setLocalCommand(undefined);
           }

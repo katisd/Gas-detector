@@ -25,7 +25,7 @@ ChartJS.register(
 );
 
 type ChartProps = {
-  chartData: { x: string; y: number }[] | undefined | void;
+  chartData: { x: string; y: number; status: string }[] | undefined | void;
   chartName: string;
   xAisUnit: "day" | "minute" | "hour";
 };
@@ -36,23 +36,28 @@ const ChartComponent: React.FC<ChartProps> = ({
   chartName,
   xAisUnit,
 }) => {
-  const helperColor = (gas: number) => {
-    if (gas < 1700) {
+  const helperColor = (status: string) => {
+    if (status == "SAFE") {
       return "rgb(4, 122, 255,0.45)";
-    } else if (gas < 3000) {
+    } else if (status == "WARNING") {
       return "rgb(255, 255, 0,0.45)";
-    } else {
+    } else if (status == "DANGER") {
       return "rgb(255, 0, 0,0.45)";
     }
   };
   // map string to date time and sort by date ascending
+  const sortedData = chartData
+    ?.map(({ x, y, status }) => ({
+      x: new Date(x).getTime(),
+      y: y,
+      status: status,
+    }))
+    .sort((a, b) => (a.x > b.x ? 1 : -1));
   const data = {
-    labels: chartData
-      ?.map(({ x, y }) => ({ x: new Date(x).getTime(), y }))
-      .sort((a, b) => (a.x > b.x ? 1 : -1)),
+    labels: sortedData?.map(({ x, y }) => ({ x, y })),
     chartName: chartName,
   };
-  const color = data.labels?.map(({ x, y }) => helperColor(y));
+  const color = sortedData?.map(({ x, y, status }) => helperColor(status));
   const Data = {
     labels: [],
     datasets: [
