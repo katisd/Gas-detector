@@ -57,7 +57,7 @@ const ChartComponent: React.FC<ChartProps> = ({
     labels: sortedData?.map(({ x, y }) => ({ x, y })),
     chartName: chartName,
   };
-  const color = sortedData?.map(({ x, y, status }) => helperColor(status));
+  const color = sortedData?.map(({ status }) => helperColor(status));
   const Data = {
     labels: [],
     datasets: [

@@ -24,6 +24,7 @@ export const serverEnv = {
  */
 export const clientSchema = z.object({
   // NEXT_PUBLIC_CLIENTVAR: z.string(),
+  URL_ENDPOINT: z.string(),
 });
 
 /**
@@ -34,4 +35,5 @@ export const clientSchema = z.object({
  */
 export const clientEnv = {
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+  URL_ENDPOINT: process.env.URL_ENDPOINT,
 };

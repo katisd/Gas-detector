@@ -4,8 +4,8 @@ import { z } from "zod"
 import { type windowButtonProps } from "../SideContent/WindowButton"
 
 // static variable
-// const url="http://group2.exceed19.online"
-const url="https://ecourse.cpe.ku.ac.th/exceed02"
+const url=process.env.NEXT_PUBLIC_URL_ENDPOINT?process.env.NEXT_PUBLIC_URL_ENDPOINT:""
+// const url="https://ecourse.cpe.ku.ac.th/exceed02"
 const delayGraph = 5000
 const delayStatus = 1000
 const delayCommand = 1000
@@ -17,7 +17,6 @@ const commandResponseShema = z.object({
 type CommandResponse = z.infer<typeof commandResponseShema>
 // fetch command function
 const fetchCommand= () => {
-    
     return axios.get<CommandResponse>(`${url}/record/command`).then((res) => {
         return commandResponseShema.parse(res.data)
     }).catch((err) => {
