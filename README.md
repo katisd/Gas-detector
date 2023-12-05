@@ -12,6 +12,16 @@ The Gas Detector Project is a comprehensive software solution designed to monito
 
 - **Window-opening Mechanisms:** In addition to alarms, the Gas Detector Project incorporates window-opening mechanisms triggered automatically in response to high gas concentrations. This proactive approach helps in ventilating the area and mitigating potential risks.
 
+
+
+
+
+https://github.com/katisd/Gas-detector/assets/90249534/301bf23c-f279-4b86-a223-4df1a5f408ed
+
+
+
+
+
 ## Technologies Used
 
 - **React** 
